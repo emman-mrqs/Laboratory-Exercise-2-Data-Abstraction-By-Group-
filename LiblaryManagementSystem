@@ -1,1 +1,61 @@
+//Emmanuel Marqueses work's
 
+package LibraryManagementSystem;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class LibraryManagementSystem {
+    private Library library;
+    private JFrame frame;
+    private JTextArea displayArea;
+    private JTextField bookField;
+    private JTextField indexField;
+
+    public LibraryManagementSystem() {
+        library = new Library();
+        
+        // Frame setup
+        frame = new JFrame("Library Management System");
+        frame.setSize(450, 350);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+
+        // Top panel with input fields and buttons
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new GridBagLayout());
+        topPanel.setBackground(new Color(240, 240, 240));
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        // Book name label and field
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        JLabel bookLabel = new JLabel("Book Name:");
+        bookLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
+        topPanel.add(bookLabel, gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        bookField = new JTextField(15);
+        topPanel.add(bookField, gbc);
+
+        // Index label and field
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        JLabel indexLabel = new JLabel("Index:");
+        indexLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
+        topPanel.add(indexLabel, gbc);
+
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        indexField = new JTextField(5);
+        topPanel.add(indexField, gbc);
+
+        // Buttons for adding, inserting, removing, and displaying total books
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(new Color(240, 240, 240));
