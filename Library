@@ -1,0 +1,49 @@
+//Fernandez, Lance Cedrick M. WORK
+
+package LibraryManagementSystem;
+public class Library {
+   private ArrayList<String> books;
+   public Library() {
+       books = new ArrayList<>();
+   }
+   public void addBook(String book) {
+       books.add(book);
+       System.out.println("Book added: " + book);
+   }
+   public void insertBook(int index, String book) {
+       try {
+           books.insert(index, book);
+           System.out.println("Book inserted at index " + index + ": " + book);
+       } catch (IndexOutOfBoundsException e) {
+           System.out.println("Invalid index: " + index);
+       }
+   }
+   public void removeBook(int index) {
+       try {
+           String removedBook = books.remove(index);
+           System.out.println("Book removed: " + removedBook);
+       } catch (IndexOutOfBoundsException e) {
+           System.out.println("Invalid index: " + index);
+       }
+   }
+   public String getBook(int index) {
+       try {
+           return books.get(index);
+       } catch (IndexOutOfBoundsException e) {
+           System.out.println("Invalid index: " + index);
+           return null;
+       }
+   }
+   public int totalBooks() {
+       return books.size();
+   }
+   public boolean isLibraryEmpty() {
+       return books.isEmpty();
+   }
+   public void displayBooks() {
+       System.out.println("Library contains " + totalBooks() + " books:");
+       for (int i = 0; i < books.size(); i++) {
+           System.out.println((i + 1) + ". " + books.get(i));
+       }
+   }
+}
