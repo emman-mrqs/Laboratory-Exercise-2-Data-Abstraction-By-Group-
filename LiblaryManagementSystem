@@ -59,3 +59,73 @@ public class LibraryManagementSystem {
         // Buttons for adding, inserting, removing, and displaying total books
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(new Color(240, 240, 240));
+
+//Joshua Nanoy's Work
+JButton addButton = new JButton("Add Book");
+        styleButton(addButton);
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String bookName = bookField.getText();
+                if (bookName.isEmpty()) {
+                    JOptionPane.showMessageDialog(frame, "Book name cannot be empty.");
+                    return;
+                }
+                library.addBook(bookName);
+                updateDisplay();
+            }
+        });
+        buttonPanel.add(addButton);
+
+        JButton insertButton = new JButton("Insert Book");
+        styleButton(insertButton);
+        insertButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int index = Integer.parseInt(indexField.getText());
+                    String bookName = bookField.getText();
+                    if (bookName.isEmpty()) {
+                        JOptionPane.showMessageDialog(frame, "Book name cannot be empty.");
+                        return;
+                    }
+                    library.insertBook(index, bookName);
+                    updateDisplay();
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(frame, "Please enter a valid index.");
+                }
+            }
+        });
+        buttonPanel.add(insertButton);
+
+        JButton removeButton = new JButton("Remove Book");
+        styleButton(removeButton);
+        removeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int index = Integer.parseInt(indexField.getText());
+                    library.removeBook(index);
+                    updateDisplay();
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(frame, "Please enter a valid index.");
+                }
+            }
+        });
+        buttonPanel.add(removeButton);
+
+        JButton totalBooksButton = new JButton("Total Books");
+        styleButton(totalBooksButton);
+        totalBooksButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(frame, "Total books: " + library.totalBooks());
+            }
+        });
+        buttonPanel.add(totalBooksButton);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        topPanel.add(buttonPanel, gbc);
+
